@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelas 7E - SMP Negeri 1 Bangkinang Kota</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="welcome-screen">
+        <div class="welcome-content">
+            <i class="fas fa-graduation-cap welcome-icon"></i>
+            <h1 class="welcome-text">WELCOME</h1>
+            <h2 class="class-text">CLASS 7E</h2>
+            <p class="subtitle">SMP Negeri 1 Bangkinang Kota</p>
+            <div class="decorative-container">
+                <div class="decorative-line"></div>
+                <span class="year-text">2025/2026</span>
+                <div class="decorative-line"></div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Aplikasi Kelas Digital</p>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="mainApp" class="main-app hidden">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-top">
+                <i class="fas fa-school"></i>
+                <div class="header-text">
+                    <h1 id="headerTitle">Jadwal Pelajaran</h1>
+                    <p id="headerSubtitle">Kelas 7E - Semester Ganjil 2025/2026</p>
+                </div>
+                <i class="fas fa-calendar" id="headerIcon"></i>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn active" onclick="showSchedule()">
+                    <i class="fas fa-calendar"></i>
+                    <span>Jadwal</span>
+                </button>
+                <button class="nav-btn" onclick="showPhotos()">
+                    <i class="fas fa-images"></i>
+                    <span>Foto Kelas</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Schedule Page -->
+        <div id="schedulePage" class="page">
+            <div class="container">
+                <div id="scheduleContainer" class="schedule-container">
+                    <!-- Schedule akan di-generate oleh JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Photos Page -->
+        <div id="photosPage" class="page hidden">
+            <div class="container">
+                <button class="upload-btn" onclick="uploadPhoto()">
+                    <i class="fas fa-camera"></i>
+                    <span>Upload Foto</span>
+                </button>
+
+                <div id="photosGrid" class="photos-grid">
+                    <!-- Photos akan di-generate oleh JavaScript -->
+                </div>
+
+                <div id="emptyState" class="empty-state">
+                    <i class="fas fa-images"></i>
+                    <h3>Belum ada foto</h3>
+                    <p>Upload foto pertama untuk memulai galeri kelas</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo Modal -->
+    <div id="photoModal" class="modal hidden">
+        <div class="modal-backdrop" onclick="closePhotoModal()">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <button class="modal-close" onclick="closePhotoModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <img id="modalImage" src="" alt="">
+                <div class="modal-info">
+                    <h3 id="modalTitle"></h3>
+                    <p id="modalDate"></p>
+                    <small id="modalUploader"></small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div id="uploadModal" class="modal hidden">
+        <div class="modal-backdrop" onclick="closeUploadModal()">
+            <div class="modal-content upload-modal" onclick="event.stopPropagation()">
+                <button class="modal-close" onclick="closeUploadModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h3>Upload Foto Kelas</h3>
+                <div class="upload-area" onclick="document.getElementById('photoInput').click()">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Klik untuk pilih foto</p>
+                    <small>Format: JPG, PNG (Max 5MB)</small>
+                </div>
+                <input type="file" id="photoInput" accept="image/*" onchange="handleFileSelect(event)" style="display: none;">
+                <div class="upload-form hidden" id="uploadForm">
+                    <img id="previewImage" class="preview-image" alt="">
+                    <input type="text" id="photoTitle" placeholder="Judul foto (opsional)" class="form-input">
+                    <input type="text" id="uploaderName" placeholder="Nama uploader" class="form-input" value="Siswa 7E">
+                    <div class="upload-buttons">
+                        <button onclick="submitPhoto()" class="btn-primary">
+                            <i class="fas fa-upload"></i>
+                            Upload
+                        </button>
+                        <button onclick="closeUploadModal()" class="btn-secondary">Batal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
